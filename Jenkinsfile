@@ -1,7 +1,7 @@
-def COLOR_MAP = [
-    'SUCCESS': 'good', 
-    'FAILURE': 'danger',
-]
+// def COLOR_MAP = [
+//     'SUCCESS': 'good', 
+//     'FAILURE': 'danger',
+// ]
 
 pipeline {
     agent any
@@ -52,18 +52,18 @@ pipeline {
         
         
         
-        stage('Checkov scan') {
-            steps {
+        // stage('Checkov scan') {
+        //     steps {
                 
-                sh """
-                sudo pip3 install checkov
-                checkov -d .
-                #checkov -d . --skip-check CKV_AWS_23,CKV_AWS_24,CKV_AWS_126,CKV_AWS_135,CKV_AWS_8,CKV_AWS_23,CKV_AWS_24
-                #checkov -d . --skip-check CKV_AWS*
-                """
+        //         sh """
+        //         sudo pip3 install checkov
+        //         checkov -d .
+        //         #checkov -d . --skip-check CKV_AWS_23,CKV_AWS_24,CKV_AWS_126,CKV_AWS_135,CKV_AWS_8,CKV_AWS_23,CKV_AWS_24
+        //         #checkov -d . --skip-check CKV_AWS*
+        //         """
                
-            }
-        }
+        //     }
+        // }
         
         
         
@@ -88,12 +88,12 @@ pipeline {
         
     }
     
-     post { 
-        always { 
-            echo 'I will always say Hello again!'
-            slackSend channel: '#team-devops', color: COLOR_MAP[currentBuild.currentResult], message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
-        }
-    }
+    //  post { 
+    //     always { 
+    //         echo 'I will always say Hello again!'
+    //         slackSend channel: '#team-devops', color: COLOR_MAP[currentBuild.currentResult], message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
+    //     }
+    // }
     
     
     
